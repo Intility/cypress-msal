@@ -1,4 +1,4 @@
-import { PublicClientApplication } from '@azure/msal-node'
+const { PublicClientApplication } = require('@azure/msal-node')
 
 async function acquireTokens(requests, pca) {
   // check if account is logged in
@@ -19,7 +19,7 @@ async function acquireTokens(requests, pca) {
   }
 }
 
-export default function generateLogin(publicClientConfig, requests) {
+module.exports = function generateLogin(publicClientConfig, requests) {
   return async function login() {
     const pca = new PublicClientApplication(publicClientConfig)
 

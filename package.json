@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "description": "A cypress plugin for projects using @azure/msal-browser.",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
