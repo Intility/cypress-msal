@@ -57,6 +57,12 @@ module.exports = (on, config) => {
 };
 ```
 
+You can now login by using the `login` command before running your tests.
+
+```js
+before(() => cy.login());
+```
+
 ## Azure Configuration
 
 The App registration needs to be a Public Application to be able to use the Device Code flow.
