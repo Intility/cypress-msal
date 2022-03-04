@@ -1,4 +1,4 @@
-const msal = require('@azure/msal-node')
+import { PublicClientApplication } from '@azure/msal-node'
 
 async function acquireTokens(requests, pca) {
   // check if account is logged in
@@ -21,7 +21,7 @@ async function acquireTokens(requests, pca) {
 
 export default function generateLogin(publicClientConfig, requests) {
   return async function login() {
-    const pca = new msal.PublicClientApplication(publicClientConfig)
+    const pca = new PublicClientApplication(publicClientConfig)
 
     try {
       // ensure cached valid tokens. Will throw if not logged in
