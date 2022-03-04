@@ -1,0 +1,24 @@
+{
+  "name": "@intility/cypress-msal",
+  "version": "0.1.0",
+  "description": "A cypress plugin for projects using @azure/msal-browser.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "msal-browser",
+    "cypress",
+    "msal-node",
+    "msal",
+    "azure",
+    "intility",
+    "authentication",
+    "aad"
+  ],
+  "author": "Intility AS",
+  "license": "MIT",
+  "dependencies": {
+    "@azure/msal-node": "^1.6.0"
+  }
+}
