@@ -6,6 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "homepage": "https://github.com/Intility/cypress-msal",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Intility/cypress-msal.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "keywords": [
     "msal-browser",
     "cypress",
