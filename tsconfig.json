@@ -5,8 +5,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "outDir": "dist",
+    "outDir": "./",
     "declaration": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": []
 }

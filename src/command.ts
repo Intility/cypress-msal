@@ -16,3 +16,14 @@ Cypress.Commands.add('login', () => {
   })
 })
 
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      /**
+       * Custom command to log in using msal test user
+       * @example cy.login()
+       */
+      login(): Chainable<any>
+    }
+  }
+}

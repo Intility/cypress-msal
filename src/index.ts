@@ -57,15 +57,3 @@ export default function generateLogin(publicClientConfig: Configuration, request
     return pca.getTokenCache().getKVStore()
   }
 }
-
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      /**
-       * Custom command to log in using msal test user
-       * @example cy.login()
-       */
-      login(): Chainable<any>
-    }
-  }
-}
