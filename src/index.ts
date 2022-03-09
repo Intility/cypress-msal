@@ -1,6 +1,10 @@
-const { PublicClientApplication } = require('@azure/msal-node')
+import { PublicClientApplication, Configuration, DeviceCodeRequest } from '@azure/msal-node'
 
-async function acquireTokens(requests, pca) {
+export type RequestsType = {
+  scopes: string[]
+}
+
+async function acquireTokens(requests: RequestsType[], pca: PublicClientApplication) {
   // check if account is logged in
   const allAccounts = await pca.getTokenCache().getAllAccounts()
 
@@ -19,26 +23,26 @@ async function acquireTokens(requests, pca) {
   }
 }
 
-module.exports = function generateLogin(publicClientConfig, requests) {
+export default function generateLogin(publicClientConfig: Configuration, requests: RequestsType[]) {
   return async function login() {
-    const pca = new PublicClientApplication(publicClientConfig)
+    const pca: PublicClientApplication = new PublicClientApplication(publicClientConfig)
 
     try {
       // ensure cached valid tokens. Will throw if not logged in
       await acquireTokens(requests, pca)
-    } catch (e) {
+    } catch (e: any) {
       // can't authenticate to keyvault, don't try to initialize login
       if (
-        e.message.includes('Azure CLI could not be found.') ||
-        e.message.includes(
+        e?.message?.includes('Azure CLI could not be found.') ||
+        e?.message?.includes(
           "Please run 'az login' from a command prompt to authenticate before using this credential."
         )
       ) {
         throw e
       }
 
-      let deviceCodeRequest = {
-        ...config.requests[0],
+      let deviceCodeRequest: DeviceCodeRequest = {
+        ...requests[0],
         deviceCodeCallback: response =>
           console.log('device code token', response)
       }
@@ -51,5 +55,17 @@ module.exports = function generateLogin(publicClientConfig, requests) {
 
     // return msal cache
     return pca.getTokenCache().getKVStore()
+  }
+}
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      /**
+       * Custom command to log in using msal test user
+       * @example cy.login()
+       */
+      login(): Chainable<any>
+    }
   }
 }
