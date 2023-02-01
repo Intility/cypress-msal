@@ -24,16 +24,17 @@ npm install @intility/cypress-msal
 
 ## Usage
 
-Register the package in `support/index.js`:
+Register the package in `support/e2e.js`:
 
 ```js
 import "@intility/cypress-msal/command";
 ```
 
-Configure and load the plugin in `plugins/index.js`:
+Configure the login command, and add it as a task in `cypress.config.js`:
 
 ```js
-import generateLogin from "@intility/cypress-msal";
+import { defineConfig } from "cypress"
+import generateLogin from "@intility/cypress-msal"
 
 let publicClientConfig = {
   auth: {
@@ -50,11 +51,18 @@ let requests = [
 
 let login = generateLogin(publicClientConfig, requests);
 
-module.exports = (on, config) => {
-  on("task", {
-    login,
-  });
-};
+export default defineConfig({
+  // ...other cypress settings here...
+  e2e: {
+    setupNodeEvents(on, config) {
+      // `on` is used to hook into various events Cypress emits
+      on("task", {
+        // register a task named login which calls the generated login from @intility/cypress-msal
+        login,
+      });
+    }
+  }
+})
 ```
 
 You can now login by using the `login` command before running your tests.
