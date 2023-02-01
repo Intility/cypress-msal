@@ -24,7 +24,7 @@ npm install @intility/cypress-msal
 
 ## Usage
 
-Register the package in `support/e2e.js`:
+Register the package in `cypress/support/e2e.js`:
 
 ```js
 import "@intility/cypress-msal/command";
