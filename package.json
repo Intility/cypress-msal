@@ -1,6 +1,6 @@
 {
   "name": "@intility/cypress-msal",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A cypress plugin for projects using @azure/msal-browser.",
   "main": "index.js",
   "type": "commonjs",
